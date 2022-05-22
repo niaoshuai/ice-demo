@@ -20,7 +20,7 @@ const getTableData = (
         query += `&${key}=${value}`;
       }
     });
-    return request(`https://console-mock.apipost.cn/app/mock/project/035500cd-6c40-4d49-be88-c3f3fbcd28d3/api/demo/news_list?${query}`)
+    return request(`/api/news?${query}`)
       .then(res => ({
         total: res.data.total,
         list: res.data.list.slice(0, 10),
@@ -55,8 +55,14 @@ const NewsDialogTable: React.FC = () => {
       title: '删除提醒',
       content: `确定删除 ${data.title} 吗`,
       onOk() {
-        Message.success(`${data.title} 删除成功!`);
-        reset();
+        request({
+          url: `/api/news/${data.id}`,
+          method: 'DELETE',
+        })
+          .then(res => {
+            Message.success(`${data.title} 删除成功!`);
+            reset();
+          });
       },
     });
   }, [reset]);
