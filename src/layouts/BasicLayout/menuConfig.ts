@@ -2,6 +2,17 @@ const headerMenuConfig = [];
 
 const asideMenuConfig = [
   {
+    name: '新闻管理',
+    path: '/',
+    icon: 'chart-news',
+    children: [
+      {
+        name: '新闻列表',
+        path: '/news/list',
+      },
+    ],
+  },
+  {
     name: '数据页面',
     path: '/',
     icon: 'chart-pie',

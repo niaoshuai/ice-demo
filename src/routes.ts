@@ -36,6 +36,7 @@ const FeedbackNotFound = lazy(() => import('@/pages/FeedbackNotFound'));
 const FeedbackServerError = lazy(() => import('@/pages/FeedbackServerError'));
 const Settings = lazy(() => import('@/pages/Settings'));
 const Person = lazy(() => import('@/pages/Person'));
+const NewsListPage = lazy(() => import('@/pages/NewsListPage'));
 const routerConfig: IRouterConfig[] = [
   {
     path: '/user',
@@ -59,6 +60,10 @@ const routerConfig: IRouterConfig[] = [
     path: '/',
     component: BasicLayout,
     children: [
+      {
+        path: '/news/list',
+        component: NewsListPage,
+      },
       {
         path: '/solution',
         component: Solution,
