@@ -63,7 +63,10 @@ const LOCATIONS = [
   { label: '杭州', value: 'hz' },
 ];
 
-const getTableData = async ({ current, pageSize }: { current: number; pageSize: number }, formData: Record<string, any>) => {
+const getTableData = async (
+  { current, pageSize }:
+  { current: number; pageSize: number },
+  formData: Record<string, any>) => {
   const query = Object.entries(formData)
     .map(([key, value]) => (value ? `&${key}=${value}` : ''))
     .reduce((prev, curr) => prev + curr, `page=${current}&size=${pageSize}`);

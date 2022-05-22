@@ -92,7 +92,7 @@ const Navigation = (props, context) => {
     if (curSubNav && !openKeys.includes(curSubNav.name)) {
       setOpenKeys([...openKeys, curSubNav.name]);
     }
-  }, [pathname]);
+  }, [openKeys, pathname]);
 
   return (
     <Nav
@@ -106,7 +106,6 @@ const Navigation = (props, context) => {
       hasArrow={false}
       mode={isCollapse ? 'popup' : 'inline'}
       onOpen={(keys) => {
-        // @ts-ignore
         setOpenKeys(keys);
       }}
     >

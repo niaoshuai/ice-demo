@@ -6,7 +6,7 @@ const UserInfo = () => {
   const [userInfo, userDispatchers] = store.useModel('user');
   useEffect(() => {
     userDispatchers.fetchUserProfile();
-  }, []);
+  });
 
   return (
     <Card free>

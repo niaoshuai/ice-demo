@@ -178,8 +178,7 @@ export default function SingleTreeTable() {
               <MenuButton.Item onClick={fetchRemote}>提交审核</MenuButton.Item>
               <MenuButton.Item onClick={fetchRemote}>打回</MenuButton.Item>
             </MenuButton>
-          </>
-        }
+          </>}
       </div>
     );
   };

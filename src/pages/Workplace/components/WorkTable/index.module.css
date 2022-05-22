@@ -1,8 +1,8 @@
 .workTable .workerContainer {
   margin-top: calc(0px - var(--shell-dark-content-paddingTop, 20px));
-  margin-right: calc(0px - var(--shell-dark-content-paddingLeft, 20px)); 
+  margin-right: calc(0px - var(--shell-dark-content-paddingLeft, 20px));
   margin-bottom: var(--shell-dark-content-paddingTop, 20px);
-  margin-left: calc(0px - var(--shell-dark-content-paddingLeft, 20px)); 
+  margin-left: calc(0px - var(--shell-dark-content-paddingLeft, 20px));
   padding: var(--shell-dark-content-paddingTop, 20px) var(--shell-dark-content-paddingLeft, 20px);
   padding-bottom: 0;
   background: #fff;

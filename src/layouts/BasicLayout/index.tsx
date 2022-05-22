@@ -58,9 +58,9 @@ export default function BasicLayout({
   const [device, setDevice] = useState(getDevice(NaN));
 
   if (typeof window !== 'undefined') {
-    window.addEventListener('optimizedResize', (e) => {
+    window.addEventListener('optimizedResize', (event) => {
       const deviceWidth =
-        (e && e.target && (e.target as Window).innerWidth) || NaN;
+        (event && event.target && (event.target as Window).innerWidth) || NaN;
       setDevice(getDevice(deviceWidth));
     });
   }

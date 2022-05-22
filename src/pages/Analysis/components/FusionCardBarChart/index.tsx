@@ -33,16 +33,17 @@ export interface FusionCardBarChartProps {
   cardConfig?: CardConfig;
 }
 
-const FusionCardBarChart: React.FunctionComponent<FusionCardBarChartProps> = (props: FusionCardBarChartProps): JSX.Element => {
-  const {
-    cardConfig = DEFAULT_DATA,
-  } = props;
+const FusionCardBarChart: React.FunctionComponent<FusionCardBarChartProps> =
+                                (props: FusionCardBarChartProps): JSX.Element => {
+                                  const {
+                                    cardConfig = DEFAULT_DATA,
+                                  } = props;
 
-  const { title, subTitle, value, chartData, des, rate, chartHeight } = cardConfig;
+                                  const { title, subTitle, value, chartData, des, rate, chartHeight } = cardConfig;
 
-  return (
-    <Card free>
-      {
+                                  return (
+                                    <Card free>
+                                      {
         title ? (
           <>
             <Card.Header title={title} />
@@ -50,27 +51,27 @@ const FusionCardBarChart: React.FunctionComponent<FusionCardBarChartProps> = (pr
           </>
         ) : null
       }
-      <Card.Content>
-        <div className={styles.cardSubTitle}>{subTitle}</div>
-        <div className={styles.cardValue}>{value}</div>
-        <div className={styles.cardDes}>{des}<span>{rate}↑</span></div>
-        <Chart
-          width={10}
-          height={chartHeight}
-          data={chartData}
-          scale={{
-            date: {
-              range: [0, 1],
-            },
-          }}
-          forceFit
-          padding={['auto', '16']}
-        >
-          <Geom type="interval" position="date*value" color="#29A5FF" />
-        </Chart>
-      </Card.Content>
-    </Card>
-  );
-};
+                                      <Card.Content>
+                                        <div className={styles.cardSubTitle}>{subTitle}</div>
+                                        <div className={styles.cardValue}>{value}</div>
+                                        <div className={styles.cardDes}>{des}<span>{rate}↑</span></div>
+                                        <Chart
+                                          width={10}
+                                          height={chartHeight}
+                                          data={chartData}
+                                          scale={{
+                                            date: {
+                                              range: [0, 1],
+                                            },
+                                          }}
+                                          forceFit
+                                          padding={['auto', '16']}
+                                        >
+                                          <Geom type="interval" position="date*value" color="#29A5FF" />
+                                        </Chart>
+                                      </Card.Content>
+                                    </Card>
+                                  );
+                                };
 
 export default FusionCardBarChart;

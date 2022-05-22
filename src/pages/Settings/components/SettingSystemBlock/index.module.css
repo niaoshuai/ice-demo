@@ -24,7 +24,7 @@
 
 .changeLogo p {
   margin: 0;
-  color: rgba(0, 0, 0, 0.50);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0;
@@ -36,7 +36,7 @@
 }
 
 .baseSettingContainer .p {
-  margin: 12px 0 24px 0;
+  margin: 12px 0 24px;
   color: #999;
   font-size: 14px;
 }

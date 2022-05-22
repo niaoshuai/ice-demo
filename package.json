@@ -17,22 +17,24 @@
     "sortablejs": "^1.12.0"
   },
   "devDependencies": {
-    "@iceworks/spec": "^1.0.0",
     "build-plugin-moment-locales": "^0.1.0",
-    "eslint": "^7.30.0",
+    "eslint": "^8.0.0",
     "ice.js": "^2.0.0",
-    "stylelint": "^13.2.0",
+    "stylelint": "^14.0.0",
     "build-plugin-ignore-style": "^0.1.0",
     "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.2"
+    "@types/react-dom": "^17.0.2",
+    "@applint/spec": "^1.0.0",
+    "prettier": "^2.1.0"
   },
   "scripts": {
     "start": "icejs start",
     "build": "icejs build",
     "lint": "npm run eslint && npm run stylelint",
-    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./",
+    "eslint": "eslint --fix --ext  .js,.jsx,.ts,.tsx ./",
     "eslint:fix": "npm run eslint -- --fix",
-    "stylelint": "stylelint \"**/*.{css,scss,less}\""
+    "stylelint": "stylelint \"**/*.{css,scss,less}\"",
+    "prettier": "prettier **/* --write"
   },
   "repository": {
     "type": "git",

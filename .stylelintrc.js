@@ -1,3 +1,4 @@
-const { getStylelintConfig } = require('@iceworks/spec');
+const { getStylelintConfig } = require('@applint/spec');
 
-module.exports = getStylelintConfig('react');
+// https://www.npmjs.com/package/@applint/spec
+module.exports = getStylelintConfig('react-ts', {});

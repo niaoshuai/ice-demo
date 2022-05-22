@@ -16,7 +16,7 @@
   margin-top: 14px;
 }
 
-.operation .btns Button {
+.operation .btns button {
   margin-left: 10px;
 }
 
@@ -50,7 +50,7 @@
   font-size: 12px;
 }
 
-.main .total Span {
+.main .total span {
   padding: 0 3px;
   color: #5584ff;
 }

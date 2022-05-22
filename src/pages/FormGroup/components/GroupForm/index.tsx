@@ -187,17 +187,17 @@ const GroupForm: React.FC<GroupFormProps> = (props: GroupFormProps) => {
     });
   };
 
-  const renderEditCell = (v: string, i: number, row: { edited: boolean }, key: keyof Company) => {
+  const renderEditCell = (val: string, idx: number, row: { edited: boolean }, key: keyof Company) => {
     if (row.edited) {
       return (
         <Input
           style={{ width: '100%' }}
-          onChange={(value) => changeRowData(i, key, value)}
-          value={v || ''}
+          onChange={(value) => changeRowData(idx, key, value)}
+          value={val || ''}
         />
       );
     }
-    return v;
+    return val;
   };
 
   return (
@@ -285,35 +285,35 @@ const GroupForm: React.FC<GroupFormProps> = (props: GroupFormProps) => {
           <Table dataSource={dataSource.company} hasBorder={false} className={styles.mainTable}>
             <Table.Column
               title="目标公司"
-              cell={(v: string, i: number, row: { edited: boolean }) => renderEditCell(v, i, row, 'name')}
+              cell={(val: string, idx: number, row: { edited: boolean }) => renderEditCell(val, idx, row, 'name')}
               dataIndex="name"
             />
             <Table.Column
               title="主营业务"
-              cell={(v: string, i: number, row: { edited: boolean }) => renderEditCell(v, i, row, 'business')}
+              cell={(val: string, idx: number, row: { edited: boolean }) => renderEditCell(val, idx, row, 'business')}
               dataIndex="business"
             />
             <Table.Column
               title="注册地"
-              cell={(v: string, i: number, row: { edited: boolean }) => renderEditCell(v, i, row, 'address')}
+              cell={(val: string, idx: number, row: { edited: boolean }) => renderEditCell(val, idx, row, 'address')}
               dataIndex="address"
             />
             <Table.Column
               title="创始人"
-              cell={(v: string, i: number, row: { edited: boolean }) => renderEditCell(v, i, row, 'creatorName')}
+              cell={(val: string, idx: number, row: { edited: boolean }) => renderEditCell(val, idx, row, 'creatorName')}
               dataIndex="creatorName"
             />
             <Table.Column
               title="操作"
-              cell={(v: string, i: number, row: { edited: boolean }) => {
+              cell={(val: string, idx: number, row: { edited: boolean }) => {
                 if (row.edited) {
                   return (
                     <div>
-                      <Button text type="primary" onClick={() => changeRowData(i, 'edited', false)}>
+                      <Button text type="primary" onClick={() => changeRowData(idx, 'edited', false)}>
                         保存
                       </Button>
                       <Divider direction="ver" />
-                      <Button text type="primary" onClick={() => deleteRow(i)}>
+                      <Button text type="primary" onClick={() => deleteRow(idx)}>
                         删除
                       </Button>
                     </div>

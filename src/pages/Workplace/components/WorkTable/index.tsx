@@ -204,7 +204,11 @@ const WorkTable: React.FC<WorkTableProps> = (props: WorkTableProps): JSX.Element
                 <List>
                   {projectList.map((project) => {
                     return (
-                      <List.Item key={project.projectName} title={project.projectName} media={<Avatar src={project.img} />}>
+                      <List.Item
+                        key={project.projectName}
+                        title={project.projectName}
+                        media={<Avatar src={project.img} />}
+                      >
                         {project.projectDesc}
                       </List.Item>
                     );

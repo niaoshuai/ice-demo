@@ -13,14 +13,14 @@ export interface IDataSource {
   tableColumn: any;
 }
 const mockTableData: Array<Record<string, unknown>> = [];
-for (let i = 0; i <= 10; i += 1) {
+for (let idx = 0; idx <= 10; idx += 1) {
   mockTableData.push({
-    name: `品牌营销服务设计 ${String.fromCharCode(97 + i).toUpperCase()}`,
+    name: `品牌营销服务设计 ${String.fromCharCode(97 + idx).toUpperCase()}`,
     type: Math.random() > 0.5 ? '24小时页面' : 'Banner 广告A',
-    demand: ['曾庆超', '阮小五', '公孙胜'][i % 3],
-    interface: ['阮小二', '谢莉莉', '樊瑞'][i % 3],
+    demand: ['曾庆超', '阮小五', '公孙胜'][idx % 3],
+    interface: ['阮小二', '谢莉莉', '樊瑞'][idx % 3],
     supplier: '博彦-李强',
-    designer: ['李立', '曹正', '姚越洋'][i % 3],
+    designer: ['李立', '曹正', '姚越洋'][idx % 3],
   });
 }
 

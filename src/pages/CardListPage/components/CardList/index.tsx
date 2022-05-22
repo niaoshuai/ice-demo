@@ -9,7 +9,7 @@ const { Cell } = ResponsiveGrid;
 export interface ICardItem {
   title?: string;
   content?: string;
-  link?: string[];
+  link: string[];
 }
 
 export interface DataSource {
@@ -52,14 +52,14 @@ const CardList: React.FunctionComponent<CardListProps> = (props: CardListProps):
     }, 1000);
   });
 
-  const onTagAValueChange = (v: string) => {
+  const onTagAValueChange = (val: string) => {
     setLoading(true);
-    setTagAValue(v);
+    setTagAValue(val);
   };
 
-  const onTagBValueChange = (v: string) => {
+  const onTagBValueChange = (val: string) => {
     setLoading(true);
-    setTagBValue(v);
+    setTagBValue(val);
   };
 
   const onSearchClick = () => {
@@ -92,21 +92,20 @@ const CardList: React.FunctionComponent<CardListProps> = (props: CardListProps):
   };
 
   const renderCards = () => {
-    return dataSource.cards.map((c: ICardItem, i: number) => (
-
-      <Cell colSpan={3} className={styles.listItem} key={i}>
+    return dataSource.cards.map((item: ICardItem, idx: number) => (
+      <Cell colSpan={3} className={styles.listItem} key={idx}>
         <div className={styles.listMain}>
           <img src="https://shadow.elemecdn.com/app/element/list.76b098b1-1732-11ea-948d-7d2ddf6d1c39.png" alt="img" />
           <div className={styles.listContent}>
             <div className={styles.listTitle}>
-              {c.title}
+              {item.title}
             </div>
             <div className={styles.listInfo}>
-              {c.content}
+              {item.content}
             </div>
             <div className={styles.listLink}>
-              <a href="#">{c.link[0]}</a>
-              <a href="#">{c.link[1]}</a>
+              <a href="#">{item.link[0]}</a>
+              <a href="#">{item.link[1]}</a>
             </div>
           </div>
         </div>

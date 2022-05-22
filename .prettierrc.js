@@ -1,3 +1,4 @@
 const { getPrettierConfig } = require('@iceworks/spec');
 
-module.exports = getPrettierConfig('react');
+// https://www.npmjs.com/package/@iceworks/spec
+module.exports = getPrettierConfig('react', {});

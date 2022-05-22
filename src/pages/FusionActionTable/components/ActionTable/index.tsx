@@ -9,7 +9,6 @@ import { getColumnKey } from './util';
 import styles from './index.module.css';
 
 const { useState } = React;
-// @ts-ignore
 const TableActionIcon = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1899388_oxn3zhg34oj.js',
 });

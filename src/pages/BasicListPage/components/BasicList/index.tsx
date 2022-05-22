@@ -52,14 +52,14 @@ const BasicList: React.FunctionComponent<BasicListProps> = (props: BasicListProp
     }, 2000);
   });
 
-  const onTagAValueChange = (v: string) => {
+  const onTagAValueChange = (val: string) => {
     setLoading(true);
-    setTagAValue(v);
+    setTagAValue(val);
   };
 
-  const onTagBValueChange = (v: string) => {
+  const onTagBValueChange = (val: string) => {
     setLoading(true);
-    setTagBValue(v);
+    setTagBValue(val);
   };
 
   const onSearchClick = () => {
@@ -96,21 +96,21 @@ const BasicList: React.FunctionComponent<BasicListProps> = (props: BasicListProp
   };
 
   const renderCards = () => {
-    return dataSource.cards.map((c: ICardItem, i: number) => (
+    return dataSource.cards.map((item: ICardItem, idx: number) => (
 
-      <div className={styles.listItem} key={i}>
+      <div className={styles.listItem} key={idx}>
         <div className={styles.cardMain}>
           <div className={styles.cardLeft}>
             <img src="https://shadow.elemecdn.com/app/element/list.62a82841-1bcb-11ea-a71c-17428dec1b82.png" alt="img" />
             <div>
               <div className={styles.cardTitle}>
-                {c.title}
+                {item.title}
               </div>
               <div className={styles.cardContent}>
-                {c.content}
+                {item.content}
               </div>
               <div className={styles.subContent}>
-                {c.subContent}
+                {item.subContent}
               </div>
             </div>
           </div>

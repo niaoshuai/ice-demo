@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Card, Table, Pagination } from '@alifd/next';
 import { useFusionTable } from 'ahooks';
-import { number } from 'prop-types';
 
 const MockData = [
   {
