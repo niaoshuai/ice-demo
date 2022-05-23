@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ResponsiveGrid } from '@alifd/next';
 import PageHeader from '@/components/PageHeader';
-import NewsDialogTable from "@/pages/NewsListPage/components/NewsDialogTable";
+import NewsDialogTable from '@/pages/NewsListPage/components/NewsDialogTable';
 
 const { Cell } = ResponsiveGrid;
 

@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { Button, Field, Table, Card, Pagination, Message, Dialog } from '@alifd/next';
-import { useFusionTable } from 'ahooks';
+import { useFusionTable, useSetState } from 'ahooks';
 import { request } from 'ice';
+import DialogNewsForm from '@/pages/NewsListPage/components/NewsDialogTable/DialogNewsForm';
+import { ActionType, OperaitionProps } from '@/pages/FusionDialogTable/components/DialogTable/Operation';
 
 /*
  * 获取表格数据
@@ -40,12 +42,77 @@ const getTableData = (
   return Promise.resolve([]);
 };
 
+
+interface ColumnWidth {
+  title: number;
+  author: number;
+  url: number;
+  content: number;
+  ip: number;
+  operation: number;
+}
+
+interface DialogState {
+  columnWidth: ColumnWidth;
+  optCol: any;
+  actionType: ActionType;
+  actionVisible: boolean;
+}
+
+const defaultColumnWidth: ColumnWidth = {
+  title: 140,
+  author: 50,
+  url: 50,
+  content: 400,
+  ip: 50,
+  operation: 50,
+};
+
 const NewsDialogTable: React.FC = () => {
+  const [state, setState] = useSetState<DialogState>({
+    columnWidth: defaultColumnWidth,
+    optCol: null,
+    actionType: 'preview',
+    actionVisible: false,
+  });
+  const { actionVisible, columnWidth, optCol } = state;
   const field = Field.useField([]);
-  const { paginationProps, tableProps, search, error, refresh } = useFusionTable(getTableData, {
+  const { paginationProps, tableProps, search } = useFusionTable(getTableData, {
     field,
   });
   const { reset } = search;
+
+  const onResizeChange = (dataIndex: keyof typeof defaultColumnWidth, width: number) => {
+    const newWidth = {
+      ...columnWidth,
+    };
+    newWidth[dataIndex] += width;
+    setState({ columnWidth: newWidth });
+  };
+
+  // 点击事件
+  const operationCallback = useCallback(({ actionType, dataSource }: OperaitionProps): void => {
+    setState({
+      actionType,
+      optCol: dataSource,
+      actionVisible: true,
+    });
+  }, [setState]);
+
+  const handleCancel = useCallback((): void => {
+    setState({ actionVisible: false });
+  }, [setState]);
+
+  const handleOk = useCallback((): void => {
+    const { actionType } = state;
+    if (actionType === 'preview') {
+      handleCancel();
+      return;
+    }
+    Message.success(actionType === 'add' ? '添加成功!' : '编辑成功!');
+    reset();
+    handleCancel();
+  }, [handleCancel, reset, state]);
 
   const handleDelete = useCallback((data: any) => {
     if (!data) {
@@ -56,7 +123,9 @@ const NewsDialogTable: React.FC = () => {
       content: `确定删除 ${data.title} 吗`,
       onOk() {
         request({
-          url: `/api/news/${data.id}`,
+          url: '/api/news/:newsId',
+          // 目前 api mock不支持路径Id 真实环境，请使用下面代码代替 FIXME
+          // url: `/api/news/${data.id}`,
           method: 'DELETE',
         })
           .then(res => {
@@ -74,9 +143,25 @@ const NewsDialogTable: React.FC = () => {
         <Button
           text
           type="primary"
+          onClick={() => operationCallback({ actionType: 'edit', dataSource: record })}
+        >
+          编辑
+        </Button>
+        &nbsp;&nbsp;
+        <Button
+          text
+          type="primary"
           onClick={() => handleDelete(record)}
         >
           删除
+        </Button>
+        &nbsp;&nbsp;
+        <Button
+          text
+          type="primary"
+          onClick={() => operationCallback({ actionType: 'preview', dataSource: record })}
+        >
+          查看
         </Button>
       </div>
     );
@@ -88,18 +173,19 @@ const NewsDialogTable: React.FC = () => {
         <Card.Content>
           <Table
             {...tableProps}
-            // onResizeChange={onResizeChange}
+            onResizeChange={onResizeChange}
             // emptyContent={error ? <ExceptionBlock onRefresh={refresh} /> : <EmptyBlock />}
             primaryKey="email"
           >
-            <Table.Column title="标题" dataIndex="title" resizable />
-            <Table.Column title="作者" dataIndex="author" resizable />
-            <Table.Column title="预览地址" dataIndex="url" resizable />
-            <Table.Column title="归属地" dataIndex="ip" resizable />
-            <Table.Column title="内容" dataIndex="content" resizable />
+            <Table.Column title="标题" dataIndex="title" resizable width={columnWidth.title} />
+            <Table.Column title="作者" dataIndex="author" resizable width={columnWidth.author} />
+            <Table.Column title="预览地址" dataIndex="url" resizable width={columnWidth.url} />
+            <Table.Column title="归属地" dataIndex="ip" resizable width={columnWidth.ip} />
+            <Table.Column title="内容" dataIndex="content" resizable width={columnWidth.content} />
             <Table.Column
               title="操作"
               resizable
+              width={columnWidth.operation}
               cell={cellOperation}
             />
           </Table>
@@ -118,6 +204,14 @@ const NewsDialogTable: React.FC = () => {
           />
         </Card.Content>
       </Card>
+      <DialogNewsForm
+        visible={actionVisible}
+        actionType={state.actionType}
+        dataSource={optCol}
+        onOk={handleOk}
+        onClose={handleCancel}
+        onCancel={handleCancel}
+      />
     </div>
   );
 };

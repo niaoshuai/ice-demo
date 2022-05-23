@@ -1,30 +1,29 @@
 import * as React from 'react';
 import { Dialog } from '@alifd/next';
 import { DialogProps } from '@alifd/next/types/dialog';
-import Operation, { ActionType, OperaitionProps, OperationRef } from './Operation';
+import NewsForm, { ActionType, OperationProps, OperationRef } from './NewsForm';
 
 const { useRef, useCallback } = React;
 const getDialogTitle = (actionType: ActionType): string => {
   switch (actionType) {
     case 'add':
     default:
-      return '添加员工';
+      return '添加新闻';
 
     case 'edit':
-      return '编辑员工';
+      return '编辑新闻';
 
     case 'preview':
-      return '预览员工';
+      return '预览新闻';
   }
 };
 
-const DialogOperation: React.FC<OperaitionProps & DialogProps> = (props) => {
+const DialogOperation: React.FC<OperationProps & DialogProps> = (props) => {
   const { actionType, dataSource, onOk = () => {}, ...lastProps } = props;
   const operationRef = useRef<OperationRef>(null);
 
   const handleOk = useCallback(() => {
     if (actionType === 'preview') {
-      // @ts-ignore
       return onOk(null);
     }
     // @ts-ignore
@@ -36,13 +35,15 @@ const DialogOperation: React.FC<OperaitionProps & DialogProps> = (props) => {
 
   return (
     <Dialog
+      shouldUpdatePosition
+      isFullScreen
       title={getDialogTitle(actionType)}
       style={{ width: 600 }}
       footerAlign="center"
       {...lastProps}
       onOk={handleOk}
     >
-      <Operation ref={operationRef} actionType={actionType} dataSource={dataSource} />
+      <NewsForm ref={operationRef} actionType={actionType} dataSource={dataSource} />
     </Dialog>
   );
 };
